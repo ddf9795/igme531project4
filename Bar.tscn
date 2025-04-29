@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Bar.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0.421875, 0.421875, 0.421875, 1, 1, 1, 1, 1 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 0.78, 0.5 )
+
+[node name="Bar" type="Node2D"]
+script = ExtResource( 1 )
+gradient = SubResource( 2 )
+
+[node name="Visual" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_right = 1.0
+margin_bottom = 1.0
+rect_min_size = Vector2( 2, 1 )
+rect_scale = Vector2( 1, -1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+gravity = 0.0
+
+[node name="Collision" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+position = Vector2( 0, -0.5 )
+shape = SubResource( 1 )
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_Area2D_body_shape_entered"]

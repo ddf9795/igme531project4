@@ -1,0 +1,161 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Node2D.gd" type="Script" id=1]
+[ext_resource path="res://274375.png" type="Texture" id=2]
+[ext_resource path="res://Main.gd" type="Script" id=3]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform sampler2D texture : hint_albedo;
+
+void fragment() {
+    vec4 tex_color = texture(texture, UV);
+    COLOR.rgb = vec3(1.0, 1.0, 1.0); // White RGB, original alpha
+	COLOR.a = tex_color.a * 0.25;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/texture = ExtResource( 2 )
+
+[sub_resource type="Curve" id=5]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, -32.7273 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.150754, 0.316583, 0.507538, 0.683417, 0.854271, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 1, 0.550289, 0.0715638, 1, 0.992866, 1, 0.0868008, 1, 0.255257, 0.995284, 0.101666, 1, 0.109652, 0.241159, 0.757069, 1, 0.480794, 0.178013, 0.618422, 1, 1, 0.130653, 0.130653, 1 )
+
+[sub_resource type="AudioStreamMicrophone" id=1]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+material = SubResource( 4 )
+position = Vector2( -558, 246 )
+amount = 10
+lifetime = 24.0
+preprocess = 10.0
+texture = ExtResource( 2 )
+direction = Vector2( 1, 0.33 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+angle = -13.2
+angle_curve = SubResource( 5 )
+color = Color( 1, 1, 1, 0.25098 )
+
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="."]
+material = SubResource( 4 )
+position = Vector2( -155, 167 )
+amount = 10
+lifetime = 24.0
+preprocess = 10.0
+texture = ExtResource( 2 )
+direction = Vector2( 1, 0.33 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+angle = -13.2
+angle_curve = SubResource( 5 )
+color = Color( 1, 1, 1, 0.25098 )
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+material = SubResource( 4 )
+position = Vector2( -437, -136 )
+amount = 10
+lifetime = 24.0
+preprocess = 10.0
+texture = ExtResource( 2 )
+direction = Vector2( 1, 0.33 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+angle = -13.2
+angle_curve = SubResource( 5 )
+color = Color( 1, 1, 1, 0.25098 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource( 4 )
+position = Vector2( -38, -217 )
+amount = 10
+lifetime = 24.0
+preprocess = 10.0
+texture = ExtResource( 2 )
+direction = Vector2( 1, 0.33 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+angle = -13.2
+angle_curve = SubResource( 5 )
+color = Color( 1, 1, 1, 0.25098 )
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource( 1 )
+gradient = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 1 )
+volume_db = 24.0
+autoplay = true
+bus = "Analysis"
+
+[node name="CPUParticles2D5" type="CPUParticles2D" parent="."]
+position = Vector2( -557, 247 )
+amount = 10
+lifetime = 24.0
+preprocess = 10.0
+texture = ExtResource( 2 )
+direction = Vector2( 1, 0.33 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+angle = -13.2
+angle_curve = SubResource( 5 )
+color = Color( 0, 0.407843, 0.141176, 0.25098 )
+
+[node name="CPUParticles2D6" type="CPUParticles2D" parent="."]
+position = Vector2( -154, 168 )
+amount = 10
+lifetime = 24.0
+preprocess = 10.0
+texture = ExtResource( 2 )
+direction = Vector2( 1, 0.33 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+angle = -13.2
+angle_curve = SubResource( 5 )
+color = Color( 0, 0.407843, 0.141176, 0.25098 )
+
+[node name="CPUParticles2D7" type="CPUParticles2D" parent="."]
+position = Vector2( -436, -135 )
+amount = 10
+lifetime = 24.0
+preprocess = 10.0
+texture = ExtResource( 2 )
+direction = Vector2( 1, 0.33 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+angle = -13.2
+angle_curve = SubResource( 5 )
+color = Color( 0, 0.407843, 0.141176, 0.25098 )
+
+[node name="CPUParticles2D8" type="CPUParticles2D" parent="."]
+position = Vector2( -37, -216 )
+amount = 10
+lifetime = 24.0
+preprocess = 10.0
+texture = ExtResource( 2 )
+direction = Vector2( 1, 0.33 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+angle = -13.2
+angle_curve = SubResource( 5 )
+color = Color( 0, 0.407843, 0.141176, 0.25098 )

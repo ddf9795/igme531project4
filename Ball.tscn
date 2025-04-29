@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Ball.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.149733, 0.331551, 0.620321, 1 )
+colors = PoolColorArray( 0, 1, 0.109375, 1, 1, 0.941892, 0, 1, 1, 0, 0, 1, 0.363281, 0, 0, 1, 0, 0, 0, 1 )
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 25.0
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Node2D" type="RigidBody2D"]
+z_index = 1
+gravity_scale = 3.0
+can_sleep = false
+linear_velocity = Vector2( 0, -1 )
+script = ExtResource( 1 )
+gradient = SubResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -3.0
+margin_top = -3.0
+margin_right = 3.0
+margin_bottom = 3.0
+rect_min_size = Vector2( 6, 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 32
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 1.0
+angular_velocity = 9999.0
+scale_amount = 2.0
+scale_amount_curve = SubResource( 4 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
