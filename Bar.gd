@@ -35,7 +35,7 @@ func _process(_delta):
 	var height = energy * HEIGHT + 20
 	$Visual.rect_scale = $Visual.rect_scale.linear_interpolate(Vector2($Visual.rect_scale.x, -height), 0.3)
 #	$"%Collision".shape.set_extents(Vector2(0.78, -$Visual.rect_scale.y))
-	$"%Collision".position.y = $Visual.rect_scale.y
+	$"%Collision".position.y = $Visual.rect_scale.y + 600
 	modulate = gradient.interpolate(energy)
 	prev_vel = vel
 

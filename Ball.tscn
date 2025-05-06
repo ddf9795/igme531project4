@@ -15,10 +15,9 @@ radius = 25.0
 [sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[node name="Node2D" type="RigidBody2D"]
+[node name="Ball" type="RigidBody2D"]
 z_index = 1
 gravity_scale = 3.0
-can_sleep = false
 linear_velocity = Vector2( 0, -1 )
 script = ExtResource( 1 )
 gradient = SubResource( 3 )

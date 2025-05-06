@@ -33,7 +33,7 @@ func _ready():
 	for i in range(BALL_COUNT):
 		var ball = preload("res://Ball.tscn").instance()
 		get_tree().get_root().call_deferred("add_child", ball)
-		ball.position.x = rand_range(0, OS.get_window_safe_area().size.x)
+		ball.position.x = rand_range(0, 1024)
 		ball.position.y = 10
 
 

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ClickSphere.gd" type="Script" id=1]
+[ext_resource path="res://AoeMarker01.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 50.0
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0 ), 0.0, 3.40492, 0, 0, Vector2( 0.519802, 0.739773 ), 0.0992628, 0.0992628, 0, 0, Vector2( 1, 0.848864 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.5, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 1
+texture = ExtResource( 2 )
+gravity = Vector2( 0, 0 )
+scale_amount = 0.3
+scale_amount_curve = SubResource( 2 )
+color_ramp = SubResource( 3 )
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_Area2D_body_shape_entered"]
